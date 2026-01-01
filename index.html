@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telegram Archive</title>
+<style>
+/* === Embedded CSS === */
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: "Courier New", Courier, monospace;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 1px solid currentColor;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+}
+
+/* Timeline vertical line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: currentColor;
+    opacity: 0.3;
+}
+
+.entry {
+    border: 1px solid currentColor;
+    padding: 1rem;
+    margin: 1rem 0;
+    width: 90%;
+    max-width: 800px;
+    background-color: #111;
+    position: relative;
+}
+
+.date {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.entry-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.content img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 0.5rem;
+    border: 1px solid currentColor;
+}
+
+.more-details {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #0af;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+.more-details:hover {
+    color: #5af;
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+    .entry {
+        width: 95%;
+        padding: 0.8rem;
+    }
+    h1 {
+        font-size: 1.2rem;
+    }
+}
+
+/* === Theme Switch Button === */
+#theme-switch {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: none;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#theme-switch:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Heaven Archive</h1>
+</header>
+
+<main class="timeline">
+    <!-- Example entry -->
+    <div class="entry">
+        <div class="date">2025-10-17</div>
+        <div class="entry-title">Heve Was Created</div>
+        <div class="content">
+            <img src="https://i.im.ge/2025/12/31/BZ1OCS.1766967391085.png" alt="screenshot">
+            <div class="more-details" onclick="window.location.href='details-20251231.html'">
+                More Details
+            </div>
+        </div>
+    </div>
+
+    <div class="entry">
+        <div class="date">2025-12-30</div>
+        <div class="entry-title">Discussion Captured</div>
+        <div class="content">
+            <img src="img/example2.jpg" alt="screenshot">
+            <div class="more-details" onclick="window.location.href='details-20251230.html'">
+                More Details
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Theme switch button -->
+<button id="theme-switch" title="Switch Theme">☀️</button>
+
+<script>
+// === Theme Toggle Script ===
+const btn = document.getElementById('theme-switch');
+btn.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    if(document.body.classList.contains('light-theme')){
+        document.body.style.backgroundColor = '#fff';
+        document.body.style.color = '#000';
+        document.querySelectorAll('.entry').forEach(e => e.style.backgroundColor = '#eee');
+        btn.textContent = '🌙';
+    } else {
+        document.body.style.backgroundColor = '#000';
+        document.body.style.color = '#fff';
+        document.querySelectorAll('.entry').forEach(e => e.style.backgroundColor = '#111');
+        btn.textContent = '☀️';
+    }
+});
+</script>
+
+</body>
+</html>
