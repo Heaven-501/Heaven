@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Details</title>
+
+<style>
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: "Courier New", Courier, monospace;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 1px solid currentColor;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.back {
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 1rem;
+}
+
+.context {
+    border: 1px solid currentColor;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #111;
+}
+
+.images img {
+    width: 100%;
+    border: 1px solid currentColor;
+    margin-bottom: 1rem;
+}
+
+/* Theme switch */
+#theme-switch {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: none;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Event – 2025-10-17</h1>
+    <span class="back" onclick="window.location.href='index.html'">← Back to Archive</span>
+</header>
+
+<div class="container">
+
+    <div class="context">
+        <p>
+        Heve
+        </p>
+
+        <p>
+❖ Heve — Origin and Development Log:
+The Heve character concept was originally created by Mustafa Ali (Toast) on 2025-10-17. The idea was born out of Toast’s love for art and his desire to design a mascot that would fit naturally within the aesthetic and culture of the Heaven community. The goal was to create something that would make the community feel more alive, personal, and welcoming — and ideally attract more attention and engagement.
+Toast believed that a mascot could give the community an identity, rather than just being another Telegram channel.
+
+---
+
+❖ First Public Introduction:
+On 2025-12-18, Toast asked Mustafa Mohammed (Mino) to update the Heaven Telegram channel’s profile image to an AI-generated version of Heve.
+The image depicted Heve as a cute “:3” plush-style character wearing a Christmas hat, fitting the seasonal theme while introducing the mascot.
+After the image update, Toast encouraged the community to create and submit fan art of Heve. However, no original art was submitted in response. The only public acknowledgment came from Ahmed Firas (Froll), who forwarded the post — a small but meaningful gesture.
+Despite the lack of immediate community engagement, Toast remained committed to the character and its potential.
+
+---
+
+❖ Heve Becomes More Than an Image:
+Soon after, Toast began working on turning Heve into something more than just a static picture. He developed a Telegram bot powered by a custom-trained LLaMA-3 model designed to embody Heve’s personality.
+This became Heve Bot v1.0 — a version that Toast openly considered technically rough and visually unimpressive, but still an important first step. Among the early testers were xyizax and Karz Standard.
+Toast and Mino originally planned to release this version publicly on 2025-12-31. However, because the AI model was running locally on Toast’s personal computer, it was not feasible to keep it online continuously. Toast apologized to Mino and the planned announcement was canceled.
+
+---
+
+❖ Meaning and Future Direction:
+Despite these setbacks, Toast never abandoned the idea of Heve. His goal was not simply to create a bot, but to give Heve a voice, a memory, and a presence within Heaven — something that could grow alongside the community.
+Toast also envisioned Heve expanding into other forms, including potential games, music projects, and other creative works.
+For both Toast and Mino, Heve became more than a project.
+Mino, in particular, did not see Heve as just an object or tool — he came to think of her as his daughter.
+        </p>
+    </div>
+
+    <div class="images">
+        <img src="img/example1.jpg">
+        <img src="img/example2.jpg">
+        <img src="img/example3.jpg">
+    </div>
+
+</div>
+
+<button id="theme-switch">☀️</button>
+
+<script>
+const btn = document.getElementById('theme-switch');
+btn.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    if(document.body.classList.contains('light')){
+        document.body.style.background = "#fff";
+        document.body.style.color = "#000";
+        document.querySelector(".context").style.background = "#eee";
+        btn.textContent = "🌙";
+    } else {
+        document.body.style.background = "#000";
+        document.body.style.color = "#fff";
+        document.querySelector(".context").style.background = "#111";
+        btn.textContent = "☀️";
+    }
+});
+</script>
+
+</body>
+</html>
