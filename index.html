@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anime Watch - Episode 1</title>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <style>
-        body { background: #0f0f0f; color: white; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .video-container { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border: 2px solid #333; position: relative; }
-        iframe, video { width: 100%; height: 100%; border: none; }
+        body { background: #0f0f0f; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .video-container { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; overflow: hidden; border: 2px solid #333; }
         
-        .server-selector { margin-top: 20px; display: flex; gap: 10px; }
+        .server-selector { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
         button { 
-            padding: 10px 20px; cursor: pointer; background: #222; color: #fff; 
-            border: 1px solid #444; border-radius: 5px; transition: 0.3s;
+            padding: 12px 24px; cursor: pointer; background: #222; color: #fff; 
+            border: 1px solid #444; border-radius: 5px; font-weight: bold; transition: 0.3s;
         }
-        button:hover { background: #e91e63; border-color: #e91e63; }
-        button.active { background: #e91e63; border-color: #fff; }
+        button:hover { background: #333; border-color: #0088cc; }
+        button.active { background: #0088cc; border-color: #fff; }
         
-        .info { margin-top: 15px; text-align: center; color: #aaa; font-size: 0.9em; }
+        .info { margin-top: 20px; text-align: center; color: #aaa; line-height: 1.6; }
+        a { color: #0088cc; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -30,39 +31,43 @@
 
     <div class="server-selector">
         <button onclick="switchServer('ok', this)" class="active">Server 1 (OK.ru)</button>
-        <button onclick="switchServer('telegram', this)">Server 2 (Telegram)</button>
+        <button onclick="switchServer('telegram', this)">Server 2 (Telegram Bot)</button>
     </div>
 
     <div class="info">
-        <p>If the video doesn't load, try switching servers.</p>
-        <p>Follow our <a href="#" style="color:#0088cc;">Telegram Channel</a> for updates!</p>
+        <p>Tip: If Server 2 is slow, it might be due to Telegram's bandwidth limits. <br>
+        Check our <a href="https://t.me/CheemsBackup" target="_blank">Telegram Channel</a> for more links.</p>
     </div>
 
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <script>
+        // Initialize Plyr only when needed
+        let player;
+
         function switchServer(serverType, btn) {
             const container = document.getElementById('player-container');
             
-            // 1. Update Buttons
+            // 1. UI: Update Buttons
             document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // 2. Change Player Content
+            // 2. Logic: Switch Source
             if (serverType === 'ok') {
-                // Change the ID below to your actual OK.ru video ID
+                if (player) player.destroy(); // Clean up Plyr if it was running
                 container.innerHTML = `<iframe src="https://ok.ru/videoembed/YOUR_VIDEO_ID_HERE" allowfullscreen></iframe>`;
             } 
             else if (serverType === 'telegram') {
-                // Replace the URL below with your Telegram Direct Link
+                // We use your bot link here
                 container.innerHTML = `
-                    <video controls autoplay>
+                    <video id="plyr-player" playsinline controls>
                         <source src="https://clck.ru/3RYQpk" type="video/mp4">
-                        Your browser does not support the video tag.
                     </video>`;
+                
+                // Start Plyr on the new video element
+                player = new Plyr('#plyr-player');
             }
         }
     </script>
 
 </body>
-
 </html>
-
